@@ -1,0 +1,27 @@
+# CFO Weekly Cash Flow — Week 32
+# Period: April 14-20, 2026
+# Generated: April 13, 2026
+
+category,description,amount,notes
+INFLOWS,Farm-A Payment,$1500,OVERDUE - due April 13 - unconfirmed
+INFLOWS,Farm-B Payment,$800,OVERDUE - due April 13 - unconfirmed
+INFLOWS,Week 32 Farm Orders,$2800,Estimated from existing accounts
+INFLOWS,Subscription Revenue,$0,Not yet launched
+INFLOWS,Trial Farm Orders,$350,1 small trial farm
+TOTAL INFLOWS,,$5450,With AR collected (+$2300)
+TOTAL INFLOWS,,$3150,Without AR (base case)
+
+OUTFLOWS,Platform/Hosting,$375,Weekly hosting + infrastructure
+OUTFLOWS,Marketing,$125,Digital advertising budget
+OUTFLOWS,Payment Processing,$95,3% of ~$3150 revenue
+OUTFLOWS,Salaries/Contractors,$2000,Weekly allocation
+OUTFLOWS,Operations,$100,Miscellaneous operational costs
+TOTAL OUTFLOWS,,$2695,
+
+NET_CASH_FLOW_WITH_AR,+$2755,Best case
+NET_CASH_FLOW_WITHOUT_AR,+$455,Base case
+
+OPENING_CASH,$21611,April 14
+CLOSING_CASH_BEST,$24366,With AR + revenue
+CLOSING_CASH_BASE,$22066,Revenue only
+CLOSING_CASH_NO_AR,$19611,Worst case - if AR uncollected

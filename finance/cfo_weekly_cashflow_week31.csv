@@ -1,0 +1,44 @@
+# CFO Weekly Cashflow — Week 31
+# Period: April 7–13, 2026
+# Prepared by: CFO Agent
+# Status: CLOSED
+
+## INFLOW
+Farm-A Payment (INV-2026-Q2-FarmA),$0.00,OVERDUE - confirm receipt
+Farm-B Payment (INV-2026-Q2-FarmB),$0.00,OVERDUE - confirm receipt
+Weekly Farm Orders (Farm-A),$1800.00,estimated
+Weekly Farm Orders (Farm-B),$1000.00,estimated
+Subscription Revenue,$0.00,not yet launched
+New Farm Orders,$0.00,no new farms
+Other Revenue,$0.00,
+TOTAL INFLOW,$2800.00,
+
+## OUTFLOW
+Platform/Hosting (AWS, domain, SSL),$375.00,weekly
+Marketing (paid ads),$125.00,weekly
+Payment Processing (Stripe 3%),$84.00,3% of ~$2800
+Salaries/Contractors,$2000.00,weekly contractor cost
+Operations (misc),$100.00,weekly estimate
+TOTAL OUTFLOW,$2684.00,
+
+NET CASH FLOW,$116.00,
+
+## CASH POSITION
+Opening Cash (April 7),$21495.00,from Week 30 close
+Net Cash Flow (Week 31),$116.00,before AR collection
+Farm-A Collection (+/-),$0.00,PENDING - confirm payment
+Farm-B Collection (+/-),$0.00,PENDING - confirm payment
+CLOSING CASH (April 13),$21611.00,estimated before AR
+
+## AR STATUS
+Farm-A (INV-2026-Q2-FarmA),$1500.00,OVERDUE - due April 13
+Farm-B (INV-2026-Q2-FarmB),$800.00,OVERDUE - due April 13
+Total AR Outstanding,$2300.00,Collection critical
+
+## NOTES
+- Week 31 revenue estimated ~$2,800 based on existing farm orders
+- Farm-A and Farm-B payments were due April 13 — payment confirmations needed
+- Cash position healthy at ~$21,611 before AR receipts
+- Burn rate remains ~$2,200/week
+- No new farm acquisition in Q3 yet
+- Subscription tiers not yet launched

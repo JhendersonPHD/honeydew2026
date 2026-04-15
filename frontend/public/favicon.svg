@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="honeyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Honey Hexagon -->
+  <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="url(#honeyGrad)"/>
+  <!-- Leaf accent -->
+  <path d="M50,25 Q65,40 55,55 Q45,40 50,25" fill="#10B981"/>
+  <!-- Center highlight -->
+  <circle cx="50" cy="45" r="8" fill="#FDE68A" opacity="0.6"/>
+</svg>

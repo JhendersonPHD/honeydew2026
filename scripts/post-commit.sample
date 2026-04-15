@@ -1,0 +1,26 @@
+#!/bin/bash
+# HoneyDew2026 Post-commit Hook Sample
+# Copy to .git/hooks/post-commit to use
+
+set -e
+
+# Get commit message
+COMMIT_MSG=$(git log -1 --pretty=%B 2>/dev/null | head -n 1)
+
+# Check if commit references an issue
+if [[ "$COMMIT_MSG" =~ VEX-[0-9]+ ]]; then
+    echo "Commit references issue: ${BASH_REMATCH[0]}"
+fi
+
+# Show changed files summary
+echo "Changed files in this commit:"
+git diff --name-only HEAD~1 HEAD 2>/dev/null | head -5
+
+# Run tests if available
+if [ -f "pytest.ini" ] || [ -f "pyproject.toml" ]; then
+    echo ""
+    echo "Running tests..."
+    pytest --tb=short -q 2>/dev/null || true
+fi
+
+echo "Post-commit checks complete"

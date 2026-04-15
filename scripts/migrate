@@ -1,0 +1,79 @@
+#!/bin/bash
+# HoneyDew2026 Database Migration Script
+# Usage: ./migrate.sh [--seed] [--reset]
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo "=========================================="
+echo "   HoneyDew2026 Migration"
+echo "=========================================="
+echo ""
+
+# Check if backend is running
+if ! curl -s http://localhost:8017/api/products/ > /dev/null 2>&1; then
+    echo "Starting backend first..."
+    ./start_services.sh
+    sleep 3
+fi
+
+# Get current version
+echo "Current database version:"
+curl -s http://localhost:8017/api/products/ | python3 -c "import sys,json; d=json.load(sys.stdin); print(f'Products: {len(d) if isinstance(d, list) else 0}')" 2>/dev/null || echo "Unknown"
+
+echo ""
+
+# Reset flag
+RESET=false
+SEED=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --reset)
+            RESET=true
+            shift
+            ;;
+        --seed)
+            SEED=true
+            shift
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Usage: ./migrate.sh [--seed] [--reset]"
+            exit 1
+            ;;
+    esac
+done
+
+if [ "$RESET" = true ]; then
+    echo -e "${RED}WARNING: This will reset the database!${NC}"
+    read -p "Are you sure? (yes/no): " confirm
+    if [ "$confirm" = "yes" ]; then
+        echo "Resetting database..."
+        rm -f backend/honeydew.db
+        echo -e "${GREEN}✓${NC} Database reset"
+    else
+        echo "Cancelled."
+        exit 0
+    fi
+fi
+
+if [ "$SEED" = true ] || [ ! -f "backend/honeydew.db" ]; then
+    echo "Running seed script..."
+    cd backend
+    source .venv/bin/activate 2>/dev/null || true
+    python seed.py
+    cd ..
+    echo -e "${GREEN}✓${NC} Database seeded"
+fi
+
+echo ""
+echo "Migration complete."
+echo ""

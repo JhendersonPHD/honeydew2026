@@ -1,0 +1,55 @@
+# CFO Weekly Cashflow — Week 33
+# Period: April 14–18, 2025
+# Generated: April 14, 2026 — CFO Heartbeat
+
+## INCOME
+| Source | Monday | Tuesday | Wednesday | Thursday | Friday | Week Total |
+|--------|--------|---------|-----------|----------|--------|------------|
+| Farm-A Payment (AR - $1,500) | $0 | $0 | $0 | $0 | $0 | $0 |
+| Farm-B Payment (AR - $800) | $0 | $0 | $0 | $0 | $0 | $0 |
+| New Farm Revenue (Conservative) | $200 | $300 | $400 | $400 | $350 | $1,650 |
+| New Farm Revenue (Optimistic) | $400 | $600 | $800 | $800 | $700 | $3,300 |
+| Existing Subscription Revenue | $400 | $400 | $400 | $400 | $400 | $2,000 |
+| **Total Conservative** | **$600** | **$700** | **$800** | **$800** | **$750** | **$3,650** |
+| **Total Optimistic** | **$800** | **$1,000** | **$1,200** | **$1,200** | **$1,100** | **$5,300** |
+
+## EXPENSES
+| Category | Monday | Tuesday | Wednesday | Thursday | Friday | Week Total |
+|----------|--------|---------|-----------|----------|--------|------------|
+| Platform/Hosting | $0 | $0 | $50 | $0 | $0 | $50 |
+| Payment Processing | $0 | $0 | $0 | $0 | $25 | $25 |
+| Marketing (Farm Outreach) | $50 | $0 | $0 | $0 | $0 | $50 |
+| Operations | $0 | $0 | $0 | $0 | $100 | $100 |
+| **Total Expenses** | **$50** | **$0** | **$50** | **$0** | **$125** | **$225** |
+
+## NET CASHFLOW
+| Scenario | Monday | Tuesday | Wednesday | Thursday | Friday | Week Total |
+|----------|--------|---------|-----------|----------|--------|------------|
+| Conservative (No AR) | $550 | $700 | $750 | $800 | $625 | $3,425 |
+| Conservative (With AR) | $2,050 | $700 | $750 | $800 | $625 | $4,925 |
+| Optimistic (No AR) | $750 | $1,000 | $1,150 | $1,200 | $975 | $5,075 |
+| Optimistic (With AR) | $2,250 | $1,000 | $1,150 | $1,200 | $975 | $6,575 |
+
+## RUNNING CASH BALANCE
+| Scenario | Monday | Tuesday | Wednesday | Thursday | Friday |
+|----------|--------|---------|-----------|----------|--------|
+| Opening Balance | $21,611 | $22,161 | $22,861 | $23,611 | $24,411 |
+| Conservative (No AR) | $22,161 | $22,861 | $23,611 | $24,411 | $25,036 |
+| Conservative (With AR) | $23,661 | $24,361 | $25,111 | $25,911 | $26,536 |
+| Optimistic (No AR) | $22,361 | $23,361 | $24,511 | $25,711 | $26,686 |
+| Optimistic (With AR) | $23,861 | $24,861 | $26,011 | $27,211 | $28,186 |
+
+## ASSUMPTIONS
+- AR collection this week: Farm-A ($1,500) and Farm-B ($800) — overdue since April 13
+- New farm revenue based on conservative outreach conversion (2–3 farms)
+- Existing subscription revenue stable at $2,000/week
+- Marketing investment: $50/week for farm outreach materials
+- Operations costs minimal — primarily Stripe fees (1.5% + $0.30 per transaction)
+
+## CRITICAL THRESHOLDS
+| Metric | Value | Status |
+|--------|-------|--------|
+| Minimum Safe Cash | $19,000 | MONITORING |
+| Week 33 Closing (Base) | ~$24,411 | ON TRACK |
+| Week 33 Closing (Best) | ~$26,761 | POSITIVE |
+| AR Collection Impact | +$2,300 | CRITICAL |

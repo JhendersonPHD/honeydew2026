@@ -1,0 +1,61 @@
+# Git Attributes
+# https://git-scm.com/docs/gitattributes
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Force Unix line endings
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+
+# Scripts without extension
+scripts/* eol=lf
+
+# Docker files
+Dockerfile text eol=lf
+docker-compose.yml text eol=lf
+
+# Keep files binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# Python
+*.py text eol=lf
+
+# JavaScript/TypeScript
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+
+# CSS/HTML
+*.css text eol=lf
+*.html text eol=lf
+
+# Markdown (allow Windows line endings for readability)
+*.md text eol=lf
+
+# YAML
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Editor config
+.editorconfig text eol=lf
+
+# Convert to UTF-8
+* encoding=utf-8
+
+# Denote files that are truly binary
+*.db binary
+*.sqlite binary
+*.db3 binary

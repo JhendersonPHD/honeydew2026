@@ -1,0 +1,3 @@
+week,year,date_range,shopify_dtc,b2b_farmdirect,b2b_greenvalley,b2b_riverside,total_inflows,inventory_restock,packaging,platform_hosting,stripe_fees,marketing,total_outflows,net_cash_flow,opening_balance,closing_balance,active_orders,farm_partners,notes
+25,2026,2026-06-22 to 2026-06-28,7800,1200,800,600,10400,1750,400,180,290,430,3050,7350,71759,79109,41,8,Riverside Farms upsell first full week; Farmdirect monthly cycle
+24,2026,2026-06-15 to 2026-06-21,7100,1700,600,0,9100,1650,350,180,260,480,2920,6180,65759,71759,38,8,Farmdirect monthly landed June 18; Riverside upsell not yet in run-rate

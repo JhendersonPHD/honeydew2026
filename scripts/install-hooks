@@ -1,0 +1,27 @@
+#!/bin/bash
+# HoneyDew2026 Git Hooks Installer
+# Usage: ./scripts/install-hooks
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+HOOKS_DIR="$SCRIPT_DIR/.git/hooks"
+
+echo "Installing git hooks for HoneyDew2026..."
+
+# Create hooks directory if it doesn't exist
+mkdir -p "$HOOKS_DIR"
+
+# Install pre-commit hook
+if [ -f "$SCRIPT_DIR/scripts/pre-commit" ]; then
+    cp "$SCRIPT_DIR/scripts/pre-commit" "$HOOKS_DIR/pre-commit"
+    chmod +x "$HOOKS_DIR/pre-commit"
+    echo "✓ Installed pre-commit hook"
+else
+    echo "✗ pre-commit hook not found"
+    exit 1
+fi
+
+echo ""
+echo "Git hooks installed successfully!"
+echo "Run 'git commit' to trigger pre-commit checks."

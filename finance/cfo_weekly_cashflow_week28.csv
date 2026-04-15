@@ -1,0 +1,9 @@
+week,date,description,category, inflows, outflows, balance
+28,2026-06-30,Opening Balance,opening,,,22995.00
+28,2026-07-01,Operating Burn,operations,, -2500.00,20495.00
+28,2026-07-02,No Activity,other,,,20495.00
+28,2026-07-03,Supplier-A Payment,operations,, -1200.00,19295.00
+28,2026-07-04,Utilities,operations,, -300.00,18995.00
+28,2026-07-05,No Activity,other,,,18995.00
+28,2026-07-06,Projected Close,operations,,,18995.00
+28,2026-07-06,CLOSING BALANCE,closing,,,18995.00

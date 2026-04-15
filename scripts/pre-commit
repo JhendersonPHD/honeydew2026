@@ -1,0 +1,41 @@
+#!/bin/bash
+# HoneyDew2026 Pre-commit Hook
+# Install: cp scripts/pre-commit .git/hooks/
+
+set -e
+
+echo "Running pre-commit checks..."
+
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Check for debug code
+echo "Checking for debug code..."
+if grep -r "console.log\|print\|debugger" --include="*.js" --include="*.jsx" frontend/src/ 2>/dev/null; then
+    echo -e "${RED}✗ Debug code found${NC}"
+    exit 1
+fi
+echo -e "${GREEN}✓ No debug code${NC}"
+
+# Check for TODO without issue reference
+echo "Checking for TODO comments..."
+if grep -r "TODO" --include="*.js" --include="*.jsx" frontend/src/ 2>/dev/null | grep -v "TODO-VEX"; then
+    echo -e "${RED}✗ TODO without VEX reference found${NC}"
+    exit 1
+fi
+echo -e "${GREEN}✓ All TODOs have issue references${NC}"
+
+# Run health check
+echo "Running health check..."
+./health_check.sh > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}✓ Health checks passed${NC}"
+else
+    echo -e "${RED}✗ Health checks failed${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}✓ All pre-commit checks passed!${NC}"
+exit 0

@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: honeydew2026-backend
+    ports:
+      - "8017:8017"
+    environment:
+      - DATABASE_URL=sqlite:///./honeydew.db
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - CORS_ORIGINS=http://localhost:3021
+    volumes:
+      - ./backend:/app
+      - honeydew-data:/app/honeydew.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8017/api/products/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: honeydew2026-frontend
+    ports:
+      - "3021:3021"
+    environment:
+      - API_BACKEND=http://backend:8017
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3021/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+volumes:
+  honeydew-data:
