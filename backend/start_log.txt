@@ -1,0 +1,6 @@
+
+> honeydew2026-backend@1.0.0 start
+> node src/server.js
+
+HoneyDew 2026 API running on http://localhost:8018
+Health: http://localhost:8018/api/health
