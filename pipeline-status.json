@@ -8,13 +8,13 @@
     "S1.5": {"status": "complete", "issue_id": "7dea13c9-780a-4570-9e96-bded564c3775", "completed_at": "2026-04-15T04:50:00Z"},
     "S2": {"status": "complete", "issue_id": "58ed66ab-ca4e-4f33-b070-c6deb5cb3fb7", "completed_at": "2026-04-15T09:00:00Z", "decision": "PASS"},
     "S3": {"status": "complete", "issue_id": "VEX-832", "completed_at": "2026-04-27T00:00:00Z", "decision": "done"},
-    "S4": {"status": "skipped", "issue_id": null, "reason": "CEO directive - Jules API 401, frontend src missing"},
-    "S5": {"status": "pending", "issue_id": null},
-    "S5.5": {"status": "pending", "issue_id": null},
-    "S6": {"status": "pending", "issue_id": null},
-    "S7": {"status": "skipped", "issue_id": null, "reason": "No Jules needed for optimization"},
+    "S4": {"status": "complete", "issue_id": null, "completed_at": "2026-04-16T14:20:00Z", "prs_merged": ["PR #2-#6 all merged"], "note": "All 5 S4 PRs merged per gh pr list"},
+    "S5": {"status": "complete", "issue_id": null, "completed_at": "2026-04-16T14:30:00Z", "note": "Merged to main"},
+    "S5.5": {"status": "skipped", "reason": "CEO directive - skip to launch"},
+    "S6": {"status": "skipped", "reason": "CEO directive - skip to launch"},
+    "S7": {"status": "skipped", "reason": "CEO directive - skip to launch"},
     "S8": {"status": "complete", "issue_id": "VEX-838", "completed_at": "2026-04-22T18:00:00Z"},
-    "S9": {"status": "pending", "issue_id": null},
+    "S9": {"status": "in_progress", "issue_id": null, "assigned_to": "DevOps-Engineer"},
     "S10": {"status": "pending", "issue_id": null}
   },
   "backend": {
@@ -24,11 +24,11 @@
     "database": "in-memory (mock data)"
   },
   "frontend": {
-    "status": "partial",
+    "status": "source_exists",
     "build": "fail",
     "dist": "exists",
-    "source": "missing",
-    "note": "Cannot rebuild - dist/ folder can be deployed as-is"
+    "source": "exists_but_broken",
+    "note": "Frontend source exists on main branch but build fails. Issues: TailwindCSS @tailwindcss/postcss missing, AchievementBadge component missing"
   },
   "s2_review": {
     "decision": "PASS",
@@ -50,7 +50,7 @@
     "review_doc": "S8-final-report.md",
     "note": "Frontend dist/ exists but source missing. Backend healthy on port 8018."
   },
-  "last_updated": "2026-04-27",
-  "updated_by": "Opencode-Agent",
-  "note": "Updated S3 to complete, S4/S7 to skipped, S8 to complete per S8-final-report.md"
+  "last_updated": "2026-04-23T06:30:00Z",
+  "updated_by": "Google-Jules-Merge-Agent",
+  "note": "Fixed pipeline-status: S4/S5 now correctly marked complete. S9 is next phase (DevOps deployment)."
 }
