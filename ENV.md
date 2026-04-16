@@ -9,8 +9,8 @@ DATABASE_URL=sqlite:///./honeydew.db
 CORS_ORIGINS=http://localhost:3021,http://localhost:3017
 
 # Frontend  
-VITE_API_URL=http://localhost:8017/api
-VITE_API_PROXY_URL=http://localhost:3017
+VITE_API_URL=http://localhost:8018/api
+VITE_API_PROXY_URL=http://localhost:3016
 ```
 
 ## Optional Variables
