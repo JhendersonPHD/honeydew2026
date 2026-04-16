@@ -8,13 +8,13 @@
     "S1.5": {"status": "complete", "issue_id": "7dea13c9-780a-4570-9e96-bded564c3775", "completed_at": "2026-04-15T04:50:00Z"},
     "S2": {"status": "complete", "issue_id": "58ed66ab-ca4e-4f33-b070-c6deb5cb3fb7", "completed_at": "2026-04-15T09:00:00Z", "decision": "PASS"},
     "S3": {"status": "complete", "issue_id": "VEX-832", "completed_at": "2026-04-27T00:00:00Z", "decision": "done"},
-    "S4": {"status": "complete", "issue_id": null, "completed_at": "2026-04-16T14:20:00Z", "prs_merged": ["PR #2-#6 all merged"], "note": "All 5 S4 PRs merged per gh pr list"},
+    "S4": {"status": "INCOMPLETE_BUT_CLAIMED_COMPLETE", "issue_id": null, "completed_at": "2026-04-16T14:20:00Z", "prs_merged": ["PR #2-#6 all merged"], "note": "All 5 S4 PRs merged per gh pr list - BUT BUILD FAILS - 5 critical files never created"},
     "S5": {"status": "complete", "issue_id": null, "completed_at": "2026-04-16T14:30:00Z", "note": "Merged to main"},
     "S5.5": {"status": "skipped", "reason": "CEO directive - skip to launch"},
     "S6": {"status": "skipped", "reason": "CEO directive - skip to launch"},
     "S7": {"status": "skipped", "reason": "CEO directive - skip to launch"},
-    "S8": {"status": "complete", "issue_id": "VEX-838", "completed_at": "2026-04-22T18:00:00Z"},
-    "S9": {"status": "in_progress", "issue_id": null, "assigned_to": "DevOps-Engineer"},
+    "S8": {"status": "in_progress", "issue_id": "VEX-838", "assigned_to": "Opencode-Agent", "note": "BUILD FAILS - 5 missing files - Opencode-Agent assigned to fix"},
+    "S9": {"status": "blocked", "issue_id": null, "blocked_by": "S8"},
     "S10": {"status": "pending", "issue_id": null}
   },
   "backend": {
@@ -28,7 +28,21 @@
     "build": "fail",
     "dist": "exists",
     "source": "exists_but_broken",
-    "note": "Frontend source exists on main branch but build fails. Issues: TailwindCSS @tailwindcss/postcss missing, AchievementBadge component missing"
+    "build_errors": [
+      "Module not found: Can't resolve '../components/LoyaltyDashboard'",
+      "Module not found: Can't resolve '../components/ReferralShare'",
+      "Module not found: Can't resolve '../components/TierProgress'",
+      "Module not found: Can't resolve '../contexts/RewardsContext'",
+      "Module not found: Can't resolve '../hooks/useLoyalty'"
+    ],
+    "missing_files": [
+      {"file": "components/LoyaltyDashboard.jsx", "status": "MISSING"},
+      {"file": "components/ReferralShare.jsx", "status": "MISSING"},
+      {"file": "components/TierProgress.jsx", "status": "MISSING"},
+      {"file": "contexts/RewardsContext.js", "status": "MISSING"},
+      {"file": "hooks/useLoyalty.js", "status": "MISSING"}
+    ],
+    "note": "Frontend source exists on main branch but build fails due to 5 missing files. These files were NEVER created by any S4 Jules session."
   },
   "s2_review": {
     "decision": "PASS",
@@ -44,13 +58,15 @@
     "issues_found": ["Frontend source missing - cannot rebuild", "No database persistence", "JWT secret hardcoded fallback", "CORS wide open"],
     "blocking_issues": false
   },
-  "s8_final_report": {
-    "decision": "complete",
-    "reviewer": "Google-Jules-Merge-Agent",
-    "review_doc": "S8-final-report.md",
-    "note": "Frontend dist/ exists but source missing. Backend healthy on port 8018."
+  "s4_investigation": {
+    "date": "2026-04-16T09:35:00Z",
+    "investigator": "Jules-Orchestrator",
+    "finding": "S4 Jules sessions claimed completion (all 5 PRs merged) but 5 critical files were NEVER created",
+    "missing_files_verified": true,
+    "git_history_confirmed": "Missing files not present in any S4 feature branch",
+    "escalation_doc": "S4_BUILD_BREAK_ESCALATION.md"
   },
-  "last_updated": "2026-04-23T06:30:00Z",
-  "updated_by": "Google-Jules-Merge-Agent",
-  "note": "Fixed pipeline-status: S4/S5 now correctly marked complete. S9 is next phase (DevOps deployment)."
+  "last_updated": "2026-04-16T09:35:00Z",
+  "updated_by": "Jules-Orchestrator",
+  "note": "CORRECTED: pipeline-status.json had inaccurate info claiming AchievementBadge was missing (it exists). Actual issue is 5 different missing files that were never created."
 }

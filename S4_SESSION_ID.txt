@@ -1,0 +1,4 @@
+Session ID: 11476315535895304817
+Created: 2026-04-16
+Issue: VEX-1102
+Title: S4.1 Jules Session: Routing & Architecture
