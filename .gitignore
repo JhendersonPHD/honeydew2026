@@ -61,3 +61,5 @@ Thumbs.db
 *.temp
 .tmp/
 temp/
+.next/
+frontend/.next
