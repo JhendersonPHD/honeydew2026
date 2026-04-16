@@ -8,6 +8,15 @@ import { authenticate } from './middleware/auth.js'
 import { generateAuthUrl, exchangeToken, verifyWebhook } from './services/shopifyOAuth.js'
 import { auditLog } from './utils/security.js'
 
+// Import new growth and engagement routes
+import loyaltyRoutes from '../app/routes/loyalty.js'
+import referralRoutes from '../app/routes/referral.js'
+import gamificationRoutes from '../app/routes/gamification.js'
+
+// Import services for integrating with orders
+import { awardPoints } from '../app/services/loyaltyService.js'
+import { processAction } from '../app/services/gamificationService.js'
+
 const app = express()
 const PORT = 8018
 
@@ -142,6 +151,12 @@ let orders = []
 // ─── Auth Routes ─────────────────────────────────────────────────────────────
 
 app.use('/api/auth', authRoutes)
+
+// ─── Growth & Engagement Routes ──────────────────────────────────────────────
+
+app.use('/api/loyalty', authenticate, loyaltyRoutes)
+app.use('/api/referrals', authenticate, referralRoutes)
+app.use('/api/gamification', authenticate, gamificationRoutes)
 
 // ─── Farms Routes ────────────────────────────────────────────────────────────
 
@@ -287,6 +302,18 @@ app.post('/api/orders', authenticate, (req, res) => {
   orders.push(order)
   // Clear user's cart
   carts.delete(req.user.id)
+
+  // Award points based on total
+  try {
+    awardPoints(req.user.id, subtotal, `Earned points on order ${order.order_number}`);
+
+    // Process gamification check
+    const farms = [...new Set(items.map(item => item.product?.farm?.name).filter(Boolean))];
+    processAction(req.user.id, 'order', { farms });
+  } catch (error) {
+    console.error('Error processing loyalty/gamification for order', error);
+  }
+
   res.json(order)
 })
 

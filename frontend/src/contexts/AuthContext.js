@@ -1,77 +1,115 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+'use client';
 
-// This is a placeholder since the frontend folder is currently mostly empty
-// In a full implementation, this would handle cookie-based authentication state
-// using credentials and handle refresh logic automatically.
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
+import { apiClient } from '../services/apiClient';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Initialize auth state from token
   useEffect(() => {
-    // Check session via /api/auth/me which relies on httpOnly cookies
-    const verifySession = async () => {
+    const initAuth = async () => {
+      setIsLoading(true);
+      setError(null);
       try {
-        const response = await fetch('/api/auth/me', {
-          // Important for cookie-based auth
-          credentials: 'include'
-        });
-        if (response.ok) {
-          const userData = await response.json();
+        const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+        if (token) {
+          // Verify token and get user profile
+          const userData = await apiClient.get('/auth/me');
           setUser(userData);
-        } else if (response.status === 401) {
-          // Attempt to refresh token if we get 401
-          const refreshRes = await fetch('/api/auth/refresh', {
-             method: 'POST',
-             credentials: 'include'
-          });
-          if (refreshRes.ok) {
-             const retryMe = await fetch('/api/auth/me', { credentials: 'include' });
-             if (retryMe.ok) {
-                setUser(await retryMe.json());
-             }
-          }
+          setIsAuthenticated(true);
         }
       } catch (err) {
-        console.error("Session verification failed", err);
+        console.error('Failed to initialize auth', err);
+        // Clean up invalid token
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('access_token');
+        }
+        setIsAuthenticated(false);
+        setUser(null);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
-    verifySession();
+
+    initAuth();
   }, []);
 
-  const login = async (email, password) => {
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-      credentials: 'include'
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setUser(data.user);
-      return { success: true };
+  const login = useCallback(async (email, password) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await apiClient.post('/auth/login', { email, password });
+
+      if (response.access_token && typeof window !== 'undefined') {
+        localStorage.setItem('access_token', response.access_token);
+        setUser(response.user);
+        setIsAuthenticated(true);
+      } else {
+        throw new Error('Invalid login response');
+      }
+    } catch (err) {
+      setError(err.message || 'Login failed');
+      throw err;
+    } finally {
+      setIsLoading(false);
     }
-    const err = await res.json();
-    return { success: false, error: err.error };
-  };
+  }, []);
 
-  const logout = async () => {
-    await fetch('/api/auth/logout', {
-      method: 'POST',
-      credentials: 'include'
-    });
+  const register = useCallback(async (userData) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await apiClient.post('/auth/register', userData);
+
+      if (response.access_token && typeof window !== 'undefined') {
+        localStorage.setItem('access_token', response.access_token);
+        setUser(response.user);
+        setIsAuthenticated(true);
+      } else {
+         throw new Error('Invalid registration response');
+      }
+    } catch (err) {
+      setError(err.message || 'Registration failed');
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const logout = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('access_token');
+    }
     setUser(null);
+    setIsAuthenticated(false);
+  }, []);
+
+  const clearError = useCallback(() => setError(null), []);
+
+  const value = {
+    user,
+    isAuthenticated,
+    isLoading,
+    error,
+    login,
+    register,
+    logout,
+    clearError
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}
