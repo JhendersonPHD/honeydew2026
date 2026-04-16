@@ -1,14 +1,41 @@
 import express from 'express'
 import cors from 'cors'
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
+import helmet from 'helmet'
+import cookieParser from 'cookie-parser'
+import { apiLimiter } from './middleware/rateLimiter.js'
+import authRoutes from './routes/auth.js'
+import { authenticate } from './middleware/auth.js'
+import { generateAuthUrl, exchangeToken, verifyWebhook } from './services/shopifyOAuth.js'
+import { auditLog } from './utils/security.js'
 
 const app = express()
 const PORT = 8018
-const JWT_SECRET = process.env.JWT_SECRET || 'honeydew-dev-secret-2026'
 
-app.use(cors())
+app.use(helmet())
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true
+}))
+
+// Apply rate limiting to all API routes
+app.use('/api', apiLimiter)
+
+// Mount webhook routes before express.json() to get raw body
+app.post('/api/shopify/webhooks/products/create', express.raw({type: 'application/json'}), (req, res) => {
+  const hmac = req.get('X-Shopify-Hmac-Sha256');
+  const body = req.body; // Buffer from express.raw
+
+  if (!verifyWebhook(body.toString(), hmac)) {
+    auditLog('SHOPIFY_WEBHOOK_INVALID_SIGNATURE', null, req.ip);
+    return res.status(401).send('Webhook validation failed');
+  }
+
+  auditLog('SHOPIFY_WEBHOOK_RECEIVED', null, req.ip, { topic: 'products/create' });
+  res.status(200).send('OK');
+})
+
 app.use(express.json())
+app.use(cookieParser())
 
 // ─── Mock Data ───────────────────────────────────────────────────────────────
 
@@ -110,71 +137,11 @@ const products = [
   { id: 13, name: 'Custom Measuring Spoons - Farm Set', slug: 'custom-measuring-spoons', description: 'Engraved measuring spoon set with farm design. Includes 1/4, 1/2, 1 tsp, and 1 tbsp. Food-safe stainless steel with 3D printed farm-theme handle. Great gift item.', price: 12.99, unit: 'set', images: ['https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-14T00:00:00Z' }
 ]
 
-let users = []
 let orders = []
-
-// ─── Auth Middleware ──────────────────────────────────────────────────────────
-
-function authenticate(req, res, next) {
-  const authHeader = req.headers.authorization
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Unauthorized' })
-  }
-  const token = authHeader.split(' ')[1]
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET)
-    req.user = decoded
-    next()
-  } catch {
-    res.status(401).json({ error: 'Invalid token' })
-  }
-}
 
 // ─── Auth Routes ─────────────────────────────────────────────────────────────
 
-app.post('/api/auth/register', async (req, res) => {
-  const { email, password, first_name, last_name } = req.body
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password required' })
-  }
-  const existing = users.find(u => u.email === email)
-  if (existing) {
-    return res.status(409).json({ error: 'Email already registered' })
-  }
-  const password_hash = await bcrypt.hash(password, 10)
-  const user = {
-    id: users.length + 1,
-    email,
-    password_hash,
-    first_name: first_name || '',
-    last_name: last_name || '',
-    is_admin: false,
-    created_at: new Date().toISOString()
-  }
-  users.push(user)
-  const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '7d' })
-  res.json({ access_token: token, user: { id: user.id, email: user.email, first_name: user.first_name, last_name: user.last_name } })
-})
-
-app.post('/api/auth/login', async (req, res) => {
-  const { email, password } = req.body
-  const user = users.find(u => u.email === email)
-  if (!user) {
-    return res.status(401).json({ error: 'Invalid credentials' })
-  }
-  const valid = await bcrypt.compare(password, user.password_hash)
-  if (!valid) {
-    return res.status(401).json({ error: 'Invalid credentials' })
-  }
-  const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '7d' })
-  res.json({ access_token: token, user: { id: user.id, email: user.email, first_name: user.first_name, last_name: user.last_name } })
-})
-
-app.get('/api/auth/me', authenticate, (req, res) => {
-  const user = users.find(u => u.id === req.user.id)
-  if (!user) return res.status(404).json({ error: 'User not found' })
-  res.json({ id: user.id, email: user.email, first_name: user.first_name, last_name: user.last_name, is_admin: user.is_admin })
-})
+app.use('/api/auth', authRoutes)
 
 // ─── Farms Routes ────────────────────────────────────────────────────────────
 
@@ -335,6 +302,27 @@ app.get('/api/orders/:id', authenticate, (req, res) => {
 })
 
 // ─── Shopify Sync (mock) ─────────────────────────────────────────────────────
+
+app.get('/api/shopify/oauth/install', authenticate, (req, res) => {
+  const shop = req.query.shop;
+  if (!shop) return res.status(400).json({ error: 'Shop parameter missing' });
+  const redirectUri = `${process.env.BACKEND_URL || 'http://localhost:8018'}/api/shopify/oauth/callback`;
+  const authUrl = generateAuthUrl(shop, redirectUri);
+  res.json({ authUrl });
+})
+
+app.get('/api/shopify/oauth/callback', async (req, res) => {
+  const { shop, code } = req.query;
+  try {
+    const tokenData = await exchangeToken(shop, code);
+    auditLog('SHOPIFY_OAUTH_SUCCESS', null, req.ip, { shop });
+    // In a real app, save tokenData to the user's DB record
+    res.json({ success: true, message: 'Shopify OAuth successful' });
+  } catch (error) {
+    auditLog('SHOPIFY_OAUTH_FAILURE', null, req.ip, { shop, error: error.message });
+    res.status(400).json({ error: 'OAuth failed' });
+  }
+})
 
 app.post('/api/shopify/sync', authenticate, (req, res) => {
   res.json({ status: 'synced', products_synced: products.length, timestamp: new Date().toISOString() })
