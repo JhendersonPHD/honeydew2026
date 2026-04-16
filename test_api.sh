@@ -2,7 +2,7 @@
 # HoneyDew2026 API Test Suite
 # Usage: ./test_api.sh [base_url]
 
-set -e
+set +e
 
 BASE_URL=${1:-"http://localhost:8017"}
 SPA_URL=${2:-"http://localhost:3017"}
