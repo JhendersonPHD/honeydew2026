@@ -5,43 +5,36 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: honeydew2026-backend
+    image: honeydew2026-backend
+    container_name: honeydew-api
     ports:
-      - "8017:8017"
+      - "8018:8018"
     environment:
-      - DATABASE_URL=sqlite:///./honeydew.db
-      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
-      - CORS_ORIGINS=http://localhost:3021
-    volumes:
-      - ./backend:/app
-      - honeydew-data:/app/honeydew.db
+      - NODE_ENV=production
+      - PORT=8018
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-changeme-in-production}
+      - CORS_ORIGINS=https://honeydew2026.netlify.app,http://localhost:3000
+    restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8017/api/products/"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8018/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 10s
-    restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: honeydew2026-frontend
+    image: honeydew2026-frontend
+    container_name: honeydew-frontend
     ports:
-      - "3021:3021"
+      - "3000:80"
     environment:
-      - API_BACKEND=http://backend:8017
+      - VITE_API_URL=http://localhost:8018/api
     depends_on:
-      backend:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3021/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 5s
+      - backend
     restart: unless-stopped
 
-volumes:
-  honeydew-data:
+# Note: For production, use nginx or a static hosting provider (Netlify/Vercel)
+# The frontend Dockerfile should serve static files, not proxy to backend

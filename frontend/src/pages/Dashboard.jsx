@@ -1,6 +1,13 @@
 import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
+
+const navLinkClass = ({ isActive }) =>
+  `px-3 py-2 rounded-md font-medium transition-colors ${
+    isActive
+      ? 'bg-emerald-100 text-emerald-800'
+      : 'text-emerald-600 hover:bg-emerald-50 hover:text-emerald-800'
+  }`;
 
 const Dashboard = () => {
   return (
@@ -8,15 +15,15 @@ const Dashboard = () => {
       <Breadcrumbs />
       <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
       <nav className="mb-8 border-b pb-4">
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-2">
           <li>
-            <Link to="/dashboard" className="text-emerald-600 hover:text-emerald-800">Overview</Link>
+            <NavLink to="/dashboard" end className={navLinkClass}>Overview</NavLink>
           </li>
           <li>
-            <Link to="/dashboard/orders" className="text-emerald-600 hover:text-emerald-800">My Orders</Link>
+            <NavLink to="/dashboard/orders" className={navLinkClass}>My Orders</NavLink>
           </li>
           <li>
-            <Link to="/dashboard/profile" className="text-emerald-600 hover:text-emerald-800">Profile</Link>
+            <NavLink to="/dashboard/profile" className={navLinkClass}>Profile</NavLink>
           </li>
         </ul>
       </nav>

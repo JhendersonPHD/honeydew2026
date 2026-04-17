@@ -1,0 +1,56 @@
+# HoneyDew2026 - Render.com Deployment Configuration
+# Deploy both frontend and backend to Render
+
+services:
+  # Backend API Service
+  - type: web
+    name: honeydew-api
+    env: node
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node src/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://honeydew2026.netlify.app,http://localhost:3000
+      - key: DATABASE_URL
+        value: sqlite:///./honeydew.db
+
+  # Frontend Static Site
+  - type: web
+    name: honeydew-frontend
+    env: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    headers:
+      - path: /*.js
+        name: Cache-Control
+        value: public, max-age=1, must-revalidate
+      - path: /*.css
+        name: Cache-Control
+        value: public, max-age=1, must-revalidate
+    rewrites:
+      - source: /api/(.*)
+        destination: https://honeydew-api.onrender.com/api/$1
+      - source: /.(.*)
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: honeydew-api
+          envVarKey: RENDER_EXTERNAL_URL
+
+# Note: After deploying, update the CORS_ORIGINS in the backend service
+# to include the actual frontend URL assigned by Render

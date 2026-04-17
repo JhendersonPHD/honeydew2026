@@ -12,7 +12,7 @@ class ApiError extends Error {
 }
 
 class ApiClient {
-  constructor(baseURL = '/api') {
+  constructor(baseURL = import.meta.env.VITE_API_URL || '/api') {
     this.baseURL = baseURL;
     this.interceptors = {
       request: [],

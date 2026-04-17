@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* HoneyDew 2026 — Global Styles */
+/* Import design tokens */
+@import '../assets/visual/design-tokens.css';
+
+/* Base styles using design tokens */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #FFFBEB; /* Warm Cream */
+  color: #1F2937; /* Dark Gray */
+}
+
+/* Honey glow button effect */
+.btn-honey {
+  @apply bg-honey-500 text-white font-semibold rounded-lg px-6 py-3;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+  transition: all 200ms ease;
+}
+
+.btn-honey:hover {
+  @apply bg-honey-600;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Card with warm surface */
+.card {
+  @apply bg-white rounded-lg shadow-md;
+  border: 1px solid rgba(245, 158, 11, 0.1);
+}
+
+.card:hover {
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+}
+
+/* Verified badge (emerald) */
+.badge-verified {
+  @apply inline-flex items-center gap-1 px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium;
+}
+
+/* AI feature badge (indigo) */
+.badge-ai {
+  @apply inline-flex items-center gap-1 px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium;
+}

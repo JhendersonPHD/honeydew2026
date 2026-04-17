@@ -1,29 +1,28 @@
-FROM python:3.11-slim
+FROM node:18-alpine
 
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+# Copy package files
+COPY package*.json ./
 
-# Copy requirements first for better caching
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies
+RUN npm ci --only=production
 
 # Copy application code
-COPY . .
+COPY src/ ./src/
+COPY app/ ./app/
 
 # Create non-root user
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
-USER appuser
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+USER nodejs
 
 # Expose port
-EXPOSE 8017
+EXPOSE 8018
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8017/api/products/ || exit 1
+    CMD wget --no-verbose --tries=1 --spider http://localhost:8018/api/health || exit 1
 
 # Run the application
-CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8017"]
+CMD ["node", "src/server.js"]
