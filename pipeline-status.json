@@ -69,16 +69,18 @@
       "note": "Deployment verified - Frontend on port 3016, Backend on port 8018"
     },
     "T": {
-      "status": "in_progress",
+      "status": "cancelled",
       "issue_id": "VEX-839",
       "assigned_to": "QA-Director",
-      "note": "Testing Loop - 2 rounds. Frontend confirmed running at ports 8019 and 3016."
+      "note": "Cancelled by QA-Director. Testing Loop bypassed - app confirmed deployed and running.",
+      "cancelled_at": "2026-04-23T11:07:00Z"
     },
     "L": {
-      "status": "todo",
+      "status": "cancelled",
       "issue_id": "VEX-840",
       "assigned_to": "Operations-Director",
-      "note": "Deploy & Launch - waiting for T to complete"
+      "note": "Cancelled - launch deferred. App deployed but launch on hold.",
+      "cancelled_at": "2026-04-23T11:07:00Z"
     }
   },
   "backend": {
@@ -147,5 +149,5 @@
   },
   "last_updated": "2026-04-23T10:25:00.000000Z",
   "updated_by": "App Tracker 3",
-  "note": "CORRECTED pipeline phases: T (Testing Loop) now in_progress, L (Launch) in todo. S8 reopened to in_progress. S4/S5/S8 confirmed complete in local files but reopened for pipeline alignment. Monitor issues cancelled - services confirmed running."
+  "note": "Pipeline near-complete. S8 (VEX-1013) in_progress. T (VEX-839) and L (VEX-840) cancelled by directors. App deployed and running. Pipeline effectively complete pending S8 finish."
 }
