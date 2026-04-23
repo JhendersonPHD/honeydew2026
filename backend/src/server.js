@@ -156,17 +156,14 @@ const products = [
   { id: 22, name: 'Honeycomb Toothbrush Holder', slug: 'honeycomb-toothbrush-holder', description: 'Modern hexagonal toothbrush holder with 4 slots and drainage base. Keeps toothbrushes organized and elevated for better hygiene. Honeycomb wall pattern is elegant in any bathroom. Dishwasher safe PLA.', price: 16.99, unit: 'each', images: ['https://images.unsplash.com/photo-1585500056547-1bb2a0c7a6f2?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-16T00:00:00Z' },
   { id: 23, name: 'Queen Bee Gift Tag Set', slug: 'queen-bee-gift-tags', description: 'Set of 12 reusable honeycomb-shaped gift tags in natural kraft PLA. Perfect for farm stand produce boxes, CSA subscription boxes, and farmers market packaging. Handwrite the recipient name or farm message. Eco-friendly alternative to paper tags.', price: 9.99, unit: 'set', images: ['https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-16T00:00:00Z' },
   { id: 24, name: 'Chicken Feed Scoop', slug: 'chicken-feed-scoop', description: 'Ergonomic 3D printed chicken feed scoop designed for farm coops. Long handle keeps you at a comfortable distance. Capacity: exactly 2 cups per scoop. Pet-safe PLA. The perfect accessory for Happy Hen Homestead customers!', price: 11.99, unit: 'each', images: ['https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-16T00:00:00Z' },
-  // ─── New Products from Research – Board Game, Desk & Kitchen ─────────────────
-  { id: 25, name: 'Adjustable Phone Stand Pro', slug: 'phone-stand-pro', description: 'Sleek adjustable phone and tablet stand for desk. Multiple viewing angles for video calls, streaming, and reading recipes. Non-slip base and cable management channel. Works with all phone sizes including Max/Mini. Farm-house white finish.', price: 18.99, unit: 'each', images: ['https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: true, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 26, name: 'Under-Desk Cable Management Tray', slug: 'cable-management-tray', description: 'Clean up your desk setup with this under-desk cable organizer tray. Screws mount or adhesive stick. Holds power bricks, hubs, and excess cable length. Eliminates cord clutter. Measures 12" x 4" x 3".', price: 22.99, unit: 'each', images: ['https://images.unsplash.com/photo-1593640408182-31c228f54abb?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 27, name: 'Catan Resource Tray Insert', slug: 'catan-insert', description: 'Custom-fit foam insert for Catan board game. Keeps resource cards,Development cards, and pieces organized during setup and play. No more spilled sheep! Fits standard Catan box. Adds professional feel to game night.', price: 32.99, unit: 'each', images: ['https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: true, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 28, name: 'Modular Drawer Organizer Set', slug: 'drawer-organizer-set', description: 'Customizable drawer organizer for kitchen utensils or desk supplies. 8-piece modular set with various compartments. Snap-together design fits any drawer size. Dishwasher safe PLA. Stop hunting for that spatula!', price: 28.99, unit: 'set', images: ['https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 29, name: 'Elevated Cat Food Bowl Stand', slug: 'cat-bowl-stand', description: 'Raised cat feeder stand promotes better digestion and reduces neck strain. Adjusts to 3 heights. Non-slip rubber feet. Removable stainless steel bowls (2 cups each). Modern farmhouse design looks great in any kitchen.', price: 24.99, unit: 'each', images: ['https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 30, name: 'Nintendo Switch Game Card Case', slug: 'switch-card-case', description: 'Store up to 12 Switch game cards in this slim, snap-shut case. Anti-scratch interior lining. Replaceable labels for each slot. Crush-proof design fits in back pocket. Perfect for traveling to game night or farmers market arcade events.', price: 15.99, unit: 'each', images: ['https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 31, name: 'Gaming Headphone Stand', slug: 'headphone-stand', description: 'Solid desktop headphone stand with weighted base. Fits all headset sizes including over-ear and on-ear. Cable routing channel built in. Farmhouse oak and white design matches any desk aesthetic. No more tangled cords!', price: 19.99, unit: 'each', images: ['https://images.unsplash.com/photo-1593640408182-31c228f54abb?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: true, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 32, name: 'Lazy Susan Bearing Insert - Heavy Duty', slug: 'lazy-susan-bearing', description: 'Professional-grade lazy susan bearing insert for cabinets and turntables. Supports up to 50 lbs. Smooth 360° rotation. Fits standard 16" and 18" cabinet openings. Whisper-quiet — no squeaking! Great for spice racks and corner cabinet solutions.', price: 18.99, unit: 'each', images: ['https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 33, name: 'Drone Prop Guard Set - Universal', slug: 'drone-prop-guard', description: 'Snap-on propeller guards for DJI Mini, Eachine, and other popular mini drones. Impact-absorbing PLA+ protects fingers and furniture during indoor flight practice. Lightweight design doesn\'t affect flight time. Set of 4 guards.', price: 14.99, unit: 'set', images: ['https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' },
-  { id: 34, name: 'Adaptive Kitchen Utensil Grip', slug: 'adaptive-utensil-grip', description: 'Large-handle adapter that fits over standard utensils for arthritis or limited grip. Fits spoons, forks, pens, paintbrushes. Medical-grade food-safe silicone over durable PLA core. Set of 3 sizes. Makes cooking accessible again.', price: 16.99, unit: 'set', images: ['https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-17T00:00:00Z' }
+  // ─── New Farm-Themed 3D Printed Products (replacing non-farm items) ─────────
+  { id: 25, name: 'Beeswax Wrap Storage Container', slug: 'beeswax-wrap-container', description: 'Custom-printed beeswax wrap storage tin with farm name personalization. Keeps your beeswax food wraps fresh and organized. A sustainable kitchen essential that reinforces the farm-to-table story. Makes a wonderful hostess gift.', price: 16.99, unit: 'each', images: ['https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: true, is_active: true, shopify_product_id: null, created_at: '2025-04-18T00:00:00Z' },
+  { id: 26, name: 'Farm Market Basket Insert', slug: 'farm-market-basket-insert', description: 'Custom-fit produce spacer inserts for wire market baskets. Keeps eggs, berries, and delicate produce from rolling during transport to farmers markets. Washable food-safe PLA. Set of 4 dividers fits standard 12" basket.', price: 14.99, unit: 'set', images: ['https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-18T00:00:00Z' },
+  { id: 27, name: 'Canning Jar Lifter Grip', slug: 'canning-jar-lifter', description: 'Ergonomic silicone-over-PLA jar lifter for water bath canning. Fits most pint and quart jar sizes. The ridged grip prevents slipping when removing hot jars from the water. Farm-fresh produce preserved right at home — just add produce from HoneyDew farms!', price: 12.99, unit: 'each', images: ['https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: true, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-18T00:00:00Z' },
+  { id: 28, name: 'Herb Drying Rack Hanger', slug: 'herb-drying-rack-hanger', description: 'Ceiling or wall-mount herb drying rack for air-drying fresh herbs from your garden or HoneyDew farms. Holds up to 8 herb bundles. Weather-resistant PLA for pantry or covered patio use. Essential for preserving basil, lavender, and other fresh herbs.', price: 19.99, unit: 'each', images: ['https://images.unsplash.com/photo-1515023115689-589c33041d3c?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: true, is_featured: true, is_active: true, shopify_product_id: null, created_at: '2025-04-18T00:00:00Z' },
+  { id: 29, name: 'Farm Stand Price Card Holder', slug: 'farm-stand-price-holder', description: 'Set of 12 tent-style price card holders for farm stand displays. Weather-resistant PLA holds up through sun and rain. Includes pre-punched holes for twine attachment to produce crates. Elevate your HoneyDew farm stand presentation at the Saturday market!', price: 11.99, unit: 'set', images: ['https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-18T00:00:00Z' },
+  { id: 30, name: 'Beekeeping Frame Holder', slug: 'beekeeping-frame-holder', description: 'Smart hive tool holder that clips to your beekeeping suit or belt. Keeps frame gripper and hive tool organized during inspections. Stainless steel compatible. Designed for local Portland beekeepers supporting HoneyDew\'s raw honey supply. A perfect add-on with your next honey order!', price: 14.99, unit: 'each', images: ['https://images.unsplash.com/photo-1475754156104-c5e0b8a3e3b0?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-18T00:00:00Z' },
+  { id: 31, name: 'Cream Separator Drip Guard', slug: 'cream-separator-guard', description: 'Precision-printed drip guard for stovetop cream separators. Redirects splashes during the creaming process for fresh dairy. Food-safe, high-heat PLA. A must-have for home dairy enthusiasts and farmstead butter makers using milk from Happy Hen Homestead!', price: 9.99, unit: 'each', images: ['https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=800'], farm: { name: 'MakerSpace 3D' }, category: { name: '3D Printed' }, category_id: 7, is_seasonal: false, is_featured: false, is_active: true, shopify_product_id: null, created_at: '2025-04-18T00:00:00Z' }
 ]
 
 let orders = []
@@ -191,9 +188,9 @@ const reviews = [
   { id: 16, product_id: 16, user_id: 14, user_name: 'Sandra G.', rating: 5, title: 'No more soggy soap', body: 'The drainage channels really work. Bar soap lasts twice as long now. Love the bee design!', created_at: '2025-04-19T11:45:00Z' },
   { id: 17, product_id: 16, user_id: 15, user_name: 'Mark D.', rating: 4, title: 'Nice gift', body: 'Bought for our wedding favors. Guests loved them!', created_at: '2025-04-22T13:00:00Z' },
   { id: 18, product_id: 20, user_id: 16, user_name: 'Jessica K.', rating: 5, title: 'Farm party hit!', body: 'Used these for our farm birthday party. Kids loved the animal shapes. Cookies looked so professional.', created_at: '2025-04-20T15:30:00Z' },
-  { id: 19, product_id: 25, user_id: 17, user_name: 'Alex R.', rating: 5, title: 'Perfect desk accessory', body: 'Sturdy and well-designed. Cable management channel is a nice touch. Looks great with my farmhouse office.', created_at: '2025-04-18T09:30:00Z' },
-  { id: 20, product_id: 27, user_id: 18, user_name: 'Tyler W.', rating: 5, title: 'Game changer for Catan', body: 'No more spilled resources! This insert fits perfectly and makes setup so much faster. Love it.', created_at: '2025-04-21T20:00:00Z' },
-  { id: 21, product_id: 31, user_id: 19, user_name: 'Danielle H.', rating: 5, title: 'Solid headphone stand', body: 'Weighted base is perfect — doesn\'t tip over. The farmhouse design fits my desk perfectly.', created_at: '2025-04-22T11:15:00Z' },
+  // Reviews for farm-themed 3D printed products (ids 25-31)
+  { id: 19, product_id: 25, user_id: 20, user_name: 'Sophie L.', rating: 5, title: 'Beeswax wrap essential!', body: 'Perfect for storing my beeswax wraps. The farm personalization makes it a beautiful gift too.', created_at: '2025-04-22T10:00:00Z' },
+  { id: 20, product_id: 28, user_id: 21, user_name: 'Maria G.', rating: 5, title: 'Drying rack is a game changer', body: 'My herbs dry so much faster now. Beautiful piece for the pantry. Love the farm aesthetic.', created_at: '2025-04-23T11:00:00Z' }
 ]
 
 // ─── Reviews Routes ───────────────────────────────────────────────────────────
@@ -204,6 +201,12 @@ const getProductReviewStats = (productId) => {
   if (productReviews.length === 0) return { avg_rating: null, review_count: 0 }
   const avg = productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length
   return { avg_rating: Math.round(avg * 10) / 10, review_count: productReviews.length }
+}
+
+// Helper: enrich product with full category (including slug) + review stats
+const enrichProduct = (p) => {
+  const fullCategory = categories.find(c => c.id === p.category_id) || { id: p.category_id, name: p.category?.name }
+  return { ...p, category: fullCategory, ...getProductReviewStats(p.id) }
 }
 
 // GET /api/reviews?product_id=X — get reviews for a product
@@ -267,7 +270,7 @@ app.get('/api/farms/:slug', (req, res) => {
 app.get('/api/farms/:slug/products', (req, res) => {
   const farm = farms.find(f => f.slug === req.params.slug)
   if (!farm) return res.status(404).json({ error: 'Farm not found' })
-  const farmProducts = products.filter(p => p.farm.name === farm.name)
+  const farmProducts = products.filter(p => p.farm.name === farm.name).map(enrichProduct)
   res.json(farmProducts)
 })
 
@@ -306,13 +309,13 @@ app.get('/api/products', (req, res) => {
       p.description.toLowerCase().includes(q)
     )
   }
-  // Inject avg_rating and review_count into each product
-  result = result.map(p => ({ ...p, ...getProductReviewStats(p.id) }))
+  // Inject full category (with slug) + review stats into each product
+  result = result.map(enrichProduct)
   res.json(result)
 })
 
 app.get('/api/products/featured', (req, res) => {
-  const featured = products.filter(p => p.is_featured).map(p => ({ ...p, ...getProductReviewStats(p.id) }))
+  const featured = products.filter(p => p.is_featured).map(enrichProduct)
   res.json(featured)
 })
 
@@ -323,16 +326,15 @@ app.get('/api/products/search', (req, res) => {
   const results = products.filter(p =>
     p.name.toLowerCase().includes(query) ||
     p.description.toLowerCase().includes(query) ||
-    p.category.name.toLowerCase().includes(query)
+    (p.category?.name || '').toLowerCase().includes(query)
   )
-  res.json(results)
+  res.json(results.map(enrichProduct))
 })
 
 app.get('/api/products/:slug', (req, res) => {
   const product = products.find(p => p.slug === req.params.slug)
   if (!product) return res.status(404).json({ error: 'Product not found' })
-  const stats = getProductReviewStats(product.id)
-  res.json({ ...product, ...stats })
+  res.json(enrichProduct(product))
 })
 
 // ─── Cart Routes (session-based, no DB) ──────────────────────────────────────

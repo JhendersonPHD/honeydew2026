@@ -135,7 +135,7 @@ const Shop = () => {
                 View All →
               </Link>
             </div>
-            <p className="text-gray-600 mb-4">Handcrafted 3D printed items — desk accessories, board game organizers, pet feeders & home goods. All food-safe, eco-friendly PLA.</p>
+            <p className="text-gray-600 mb-4">Handcrafted 3D printed items for the farmstead kitchen, farmers market & home pantry. From beeswax wrap organizers to herb drying racks — all printed with food-safe, eco-friendly PLA in Portland.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {printed3DProducts.slice(0, 4).map(product => (
                 <ProductCard key={product.id} product={product} />
@@ -155,7 +155,7 @@ const Shop = () => {
                 {newArrivals.length} new items just added
               </span>
             </div>
-            <p className="text-gray-600 mb-4">Check out our latest 3D printed products — board game organizers, desk accessories, pet gear and more!</p>
+            <p className="text-gray-600 mb-4">Just in from MakerSpace 3D — farm stand displays, kitchen helpers, beekeeping gear, and pantry essentials. All handcrafted in Portland with food-safe, eco-friendly PLA!</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {newArrivals.map(product => (
                 <div key={product.id} className="relative">

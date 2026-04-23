@@ -60,8 +60,17 @@ A Shopify-style e-commerce platform connecting local farmers with consumers. Use
 - Shopify: sync trigger, status
 
 ## Design System
-- Primary: #10B981 (Emerald), Secondary: #6366F1 (Indigo)
-- Background: #0F172A, Surface: #1E293B, Text: #F8FAFC
+- Primary: #F59E0B (Amber/Honey) — warmth, freshness, appetite
+- Secondary: #10B981 (Emerald) — health, organic, verified
+- Accent: #6366F1 (Indigo) — AI features, premium
+- Background: #FFFBEB (Warm Cream) — main background
+- Surface: #FFFFFF (White) — cards, modals
+- Surface Alt: #FEF3C7 (Lighter Cream) — hover, subtle bg
+- Text Primary: #1F2937 (Dark Gray)
+- Text Secondary: #6B7280 (Medium Gray)
+- **Theme: LIGHT** (warm cream background — NOT dark theme)
+- Font: Inter (Google Fonts), JetBrains Mono for prices/stats
+- Shadow: Honey glow effect (rgba(245, 158, 11, 0.25)) on primary buttons
 
 ## Tech Stack
 - Frontend: React 18 + Vite (Port 3016)
