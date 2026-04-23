@@ -12,6 +12,7 @@ import { auditLog } from './utils/security.js'
 import loyaltyRoutes from '../app/routes/loyalty.js'
 import referralRoutes from '../app/routes/referral.js'
 import gamificationRoutes from '../app/routes/gamification.js'
+import shopifyRoutes from '../app/routes/shopify.js'
 
 // Import services for integrating with orders
 import { awardPoints } from '../app/services/loyaltyService.js'
@@ -454,13 +455,8 @@ app.get('/api/shopify/oauth/callback', async (req, res) => {
   }
 })
 
-app.post('/api/shopify/sync', authenticate, (req, res) => {
-  res.json({ status: 'synced', products_synced: products.length, timestamp: new Date().toISOString() })
-})
-
-app.get('/api/shopify/status', authenticate, (req, res) => {
-  res.json({ connected: true, last_sync: new Date().toISOString(), product_count: products.length })
-})
+// Mount Shopify routes (modular)
+app.use('/api/shopify', shopifyRoutes)
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 

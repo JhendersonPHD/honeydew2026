@@ -5,6 +5,7 @@ import productRoutes from './products.js';
 import categoryRoutes from './categories.js';
 import cartRoutes from './cart.js';
 import orderRoutes from './orders.js';
+import shopifyRoutes from './shopify.js';
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.use('/products', productRoutes);
 router.use('/categories', categoryRoutes);
 router.use('/cart', cartRoutes);
 router.use('/orders', orderRoutes);
+router.use('/shopify', shopifyRoutes);
 
 export default router;

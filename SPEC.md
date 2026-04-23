@@ -90,7 +90,7 @@ A Shopify-style e-commerce platform connecting local farmers with consumers. Use
 - [x] Checkout flow (UI ready)
 - [x] User accounts
 - [x] Reviews
-- [x] Shopify sync (placeholder routes exist)
+- [x] Shopify sync (modular routes: `backend/app/routes/shopify.js`)
 - [x] Docker deployment (docker-compose, Dockerfiles, nginx, PM2)
 - [x] Seed data (31 products, 9 farms, 10 categories)
 - [x] Security audit passed (Phase 5)
