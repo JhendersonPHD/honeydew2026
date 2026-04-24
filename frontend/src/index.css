@@ -1,9 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* HoneyDew 2026 — Global Styles */
-/* Import design tokens */
 @import '../assets/visual/design-tokens.css';
 
 /* Base styles using design tokens */
@@ -15,13 +11,13 @@ body {
 
 /* Honey glow button effect */
 .btn-honey {
-  @apply bg-honey-500 text-white font-semibold rounded-lg px-6 py-3;
+  @apply bg-amber-500 text-white font-semibold rounded-lg px-6 py-3;
   box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
   transition: all 200ms ease;
 }
 
 .btn-honey:hover {
-  @apply bg-honey-600;
+  @apply bg-amber-600;
   box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
   transform: translateY(-1px);
 }

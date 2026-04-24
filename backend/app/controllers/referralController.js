@@ -1,4 +1,4 @@
-import { getReferralStatus, processReferral } from '../services/referralService.js';
+import { getReferralStatus, processReferral, getReferralStats } from '../services/referralService.js';
 
 export const getStatus = (req, res) => {
   try {
@@ -25,6 +25,16 @@ export const applyReferral = (req, res) => {
     }
 
     res.json({ success: true, message: 'Referral applied successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getStats = (req, res) => {
+  try {
+    const userId = req.user?.id || 1;
+    const stats = getReferralStats(userId);
+    res.json(stats);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
