@@ -14,6 +14,11 @@ import referralRoutes from '../app/routes/referral.js'
 import gamificationRoutes from '../app/routes/gamification.js'
 import shopifyRoutes from '../app/routes/shopify.js'
 
+import rewardsRoutes from '../app/routes/rewards.js'
+import feedbackRoutes from '../app/routes/feedback.js'
+import notificationsRoutes from '../app/routes/notifications.js'
+
+
 // Import services for integrating with orders
 import { awardPoints } from '../app/services/loyaltyService.js'
 import { processAction } from '../app/services/gamificationService.js'
@@ -254,6 +259,11 @@ app.use('/api/auth', authRoutes)
 
 app.use('/api/loyalty', authenticate, loyaltyRoutes)
 app.use('/api/referrals', authenticate, referralRoutes)
+
+app.use('/api/rewards', authenticate, rewardsRoutes)
+app.use('/api/feedback', authenticate, feedbackRoutes)
+app.use('/api/notifications', authenticate, notificationsRoutes)
+
 app.use('/api/gamification', authenticate, gamificationRoutes)
 
 // ─── Farms Routes ────────────────────────────────────────────────────────────

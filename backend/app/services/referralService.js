@@ -21,6 +21,15 @@ export const getReferralStatus = (userId) => {
   return initializeUserReferral(userId);
 };
 
+export const getReferralStats = (userId) => {
+  const data = initializeUserReferral(userId);
+  return {
+    code: data.code,
+    count: data.referrals.length,
+    rewards: data.rewards
+  };
+};
+
 export const processReferral = (newUserId, referralCode) => {
   const referrer = referralCodes.get(referralCode);
   if (!referrer) {

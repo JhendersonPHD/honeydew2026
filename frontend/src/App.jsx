@@ -17,6 +17,11 @@ const DashboardOrders = lazy(() => import('./pages/dashboard/Orders'));
 const DashboardProfile = lazy(() => import('./pages/dashboard/Profile'));
 const Login = lazy(() => import('./pages/Login'));
 
+const Rewards = lazy(() => import('./pages/Rewards'));
+const Referrals = lazy(() => import('./pages/Referrals'));
+const Notifications = lazy(() => import('./pages/Notifications'));
+
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -34,6 +39,11 @@ const App = () => {
         <Route path="/shop" element={<LazyPage Component={Shop} />} />
         <Route path="/products/:slug" element={<LazyPage Component={ProductDetail} />} />
         <Route path="/login" element={<LazyPage Component={Login} />} />
+
+        <Route path="/rewards" element={<LazyPage Component={Rewards} />} />
+        <Route path="/referrals" element={<LazyPage Component={Referrals} />} />
+        <Route path="/notifications" element={<LazyPage Component={Notifications} />} />
+
 
         {/* Protected Dashboard Routes */}
         <Route path="/dashboard" element={<ProtectedRoute />}>
