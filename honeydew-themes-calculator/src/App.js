@@ -6,7 +6,7 @@ import Themes from './Themes';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <div>
         <nav>
           <ul>
