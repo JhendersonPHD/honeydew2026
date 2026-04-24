@@ -28,4 +28,22 @@ describe('App routing', () => {
     const heading = screen.getByRole('heading', { name: 'Themes' });
     expect(heading).toBeInTheDocument();
   });
+
+  test('navigates to Referral page', () => {
+    render(<App />);
+    const referralLink = screen.getByText(/Referral/i, { selector: 'a' });
+    fireEvent.click(referralLink);
+
+    const heading = screen.getByRole('heading', { name: 'Refer a Friend' });
+    expect(heading).toBeInTheDocument();
+  });
+
+  test('navigates to Dashboard page', () => {
+    render(<App />);
+    const dashboardLink = screen.getByText(/Dashboard/i, { selector: 'a' });
+    fireEvent.click(dashboardLink);
+
+    const heading = screen.getByRole('heading', { name: 'Engagement Metrics Dashboard' });
+    expect(heading).toBeInTheDocument();
+  });
 });
