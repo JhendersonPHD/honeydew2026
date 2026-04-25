@@ -25,7 +25,7 @@ fi
 
 # Check for existing processes
 backend_pid=$(lsof -ti:8017 2>/dev/null || true)
-frontend_pid=$(lsof -ti:3017 2>/dev/null || true)
+frontend_pid=$(lsof -ti:3016 2>/dev/null || true)
 
 if [ -n "$backend_pid" ]; then
     echo -e "${YELLOW}!${NC} Backend already running on port 8017 (PID: $backend_pid)"
@@ -41,12 +41,12 @@ else
 fi
 
 if [ -n "$frontend_pid" ]; then
-    echo -e "${YELLOW}!${NC} Frontend already running on port 3017 (PID: $frontend_pid)"
+    echo -e "${YELLOW}!${NC} Frontend already running on port 3016 (PID: $frontend_pid)"
 else
     echo "Starting Frontend SPA..."
     cd frontend
     nohup npm run dev > ../frontend.log 2>&1 &
-    echo -e "${GREEN}✓${NC} Frontend started on port 3017"
+    echo -e "${GREEN}✓${NC} Frontend started on port 3016"
     cd ..
 fi
 
@@ -63,10 +63,10 @@ else
     echo -e "  ${RED}✗${NC} Backend API (8017)"
 fi
 
-if curl -s http://localhost:3017/ > /dev/null 2>&1; then
-    echo -e "  ${GREEN}✓${NC} Frontend SPA (3017)"
+if curl -s http://localhost:3016/ > /dev/null 2>&1; then
+    echo -e "  ${GREEN}✓${NC} Frontend SPA (3016)"
 else
-    echo -e "  ${RED}✗${NC} Frontend SPA (3017)"
+    echo -e "  ${RED}✗${NC} Frontend SPA (3016)"
 fi
 
 echo ""
@@ -75,7 +75,7 @@ echo -e "   ${GREEN}Services started!${NC}"
 echo "=========================================="
 echo ""
 echo "Access:"
-echo "  Frontend: http://localhost:3017"
+echo "  Frontend: http://localhost:3016"
 echo "  Backend:  http://localhost:8017"
 echo "  Docs:     http://localhost:8017/docs"
 echo ""
