@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import ProductCard from '../components/ProductCard';
@@ -10,6 +10,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -29,6 +30,10 @@ const Shop = () => {
       setSelectedCategory('all');
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    filterProducts();
+  }, [filterProducts]);
 
   const updateCategoryParam = (categorySlug) => {
     if (categorySlug === 'all') {
@@ -57,6 +62,7 @@ const Shop = () => {
 
       setProducts(productsData);
       setCategories(categoriesData);
+      setFilteredProducts(productsData);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -64,8 +70,7 @@ const Shop = () => {
     }
   };
 
-  // Use useMemo for derived state instead of useCallback + useEffect
-  const filteredProducts = useMemo(() => {
+  const filterProducts = useCallback(() => {
     let filtered = [...products];
 
     // Filter by category
@@ -83,15 +88,11 @@ const Shop = () => {
       );
     }
 
-    return filtered;
+    setFilteredProducts(filtered);
   }, [products, selectedCategory, searchQuery]);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-  };
-
-  const handleSuggestionSelect = (suggestion) => {
-    setSearchQuery(suggestion.name);
   };
 
   const handleCategoryChange = (categorySlug) => {
@@ -116,13 +117,8 @@ const Shop = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8 relative z-50">
-          <SearchBar
-            onSearch={handleSearch}
-            suggestions={searchQuery ? filteredProducts : []}
-            onSuggestionSelect={handleSuggestionSelect}
-            placeholder="Search products, farms..."
-          />
+        <div className="max-w-2xl mx-auto mb-8">
+          <SearchBar onSearch={handleSearch} placeholder="Search products, farms..." />
         </div>
 
         {/* 3D Printed Products Featured Section */}

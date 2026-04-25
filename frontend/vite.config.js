@@ -4,12 +4,11 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/honeydew2026/',
   server: {
     port: 3016,
     proxy: {
       '/api': {
-        target: 'http://localhost:8017',
+        target: 'http://localhost:8018',
         changeOrigin: true
       }
     }
