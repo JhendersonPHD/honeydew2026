@@ -66,7 +66,7 @@ run_integration_tests() {
         return
     fi
     
-    if ! curl -s http://localhost:3021/ > /dev/null 2>&1; then
+    if ! curl -s http://localhost:3016/ > /dev/null 2>&1; then
         echo -e "${RED}✗${NC} Frontend not running. Start with ./start_services.sh"
         FAILED=$((FAILED + 1))
         return
