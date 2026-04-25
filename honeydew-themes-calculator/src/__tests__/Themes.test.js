@@ -24,4 +24,15 @@ describe('Themes Component', () => {
       expect(suggestion).toBeInTheDocument();
     }, { timeout: 1500 });
   });
+
+  test('adheres to design tokens for AI features', () => {
+    render(<Themes />);
+    const backgroundContainer = screen.getByTestId('ai-background');
+    const heading = screen.getByTestId('ai-accent-color');
+    const button = screen.getByRole('button', { name: /Suggest a Theme/i });
+
+    expect(backgroundContainer).toHaveStyle('background-color: #FFFBEB');
+    expect(heading).toHaveStyle('color: #6366F1');
+    expect(button).toHaveStyle('background-color: #6366F1');
+  });
 });

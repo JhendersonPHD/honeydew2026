@@ -24,14 +24,14 @@ function Themes() {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Themes</h2>
-      <div style={{
+      <div data-testid="ai-background" style={{
         marginTop: '20px',
         padding: '20px',
         border: '1px solid #ddd',
         borderRadius: '8px',
         backgroundColor: '#FFFBEB'
       }}>
-        <h3 style={{ color: '#6366F1', display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <h3 data-testid="ai-accent-color" style={{ color: '#6366F1', display: 'flex', alignItems: 'center', gap: '8px' }}>
           ✨ AI-Powered Theme Suggestions
         </h3>
         <p>Looking for inspiration? Let our AI suggest a new theme for your calculator!</p>
