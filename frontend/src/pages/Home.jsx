@@ -6,6 +6,7 @@ import PageTransition from '../components/PageTransition';
 import { WelcomeModal } from '../components/WelcomeModal';
 import { AbandonedCartBanner } from '../components/AbandonedCartBanner';
 import { EmailSignup } from '../components/EmailSignup';
+import Recommendations from '../components/Recommendations';
 
 const Home = () => {
   const { user } = useAuth();
@@ -26,6 +27,11 @@ const Home = () => {
               Login to continue
             </Link>
           )}
+        </div>
+
+        {/* AI Recommendations section visible to logged in users, or based on local tracking */}
+        <div className="mt-8 mb-12 px-4 max-w-6xl mx-auto text-left">
+          <Recommendations />
         </div>
 
         <div className="max-w-xl mx-auto text-left mt-16 border-t pt-8">

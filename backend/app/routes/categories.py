@@ -4,4 +4,4 @@ router = APIRouter()
 
 @router.get("/")
 def get_categories():
-    return {"items": []}
+    return [{"id": 1, "name": "Mock Category"}]
