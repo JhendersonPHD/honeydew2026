@@ -18,10 +18,10 @@ function Themes() {
           model: 'gpt-3.5-turbo',
           messages: [{
             role: 'user',
-            content: 'Suggest a creative, farm-to-consumer theme with a short description and color palette.'
+            content: 'Suggest a creative, farm-to-consumer theme with a short description and color palette, emphasizing freshness.'
           }],
           max_tokens: 50,
-          temperature: 0.7
+          temperature: 0.8
         })
       });
 
