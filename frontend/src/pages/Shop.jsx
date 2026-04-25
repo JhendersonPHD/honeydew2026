@@ -90,6 +90,10 @@ const Shop = () => {
     setSearchQuery(query);
   };
 
+  const handleSuggestionSelect = (suggestion) => {
+    setSearchQuery(suggestion.name);
+  };
+
   const handleCategoryChange = (categorySlug) => {
     updateCategoryParam(categorySlug);
   };
@@ -112,8 +116,13 @@ const Shop = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <SearchBar onSearch={handleSearch} placeholder="Search products, farms..." />
+        <div className="max-w-2xl mx-auto mb-8 relative z-50">
+          <SearchBar
+            onSearch={handleSearch}
+            suggestions={searchQuery ? filteredProducts : []}
+            onSuggestionSelect={handleSuggestionSelect}
+            placeholder="Search products, farms..."
+          />
         </div>
 
         {/* 3D Printed Products Featured Section */}

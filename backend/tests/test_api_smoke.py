@@ -5,7 +5,7 @@ Run: pytest tests/test_api_smoke.py -v
 """
 import requests
 
-BASE_URL = "http://localhost:8018"
+BASE_URL = "http://localhost:8017"
 
 def test_health_endpoint():
     """Backend is running and responsive."""
