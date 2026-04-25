@@ -12,7 +12,7 @@
 
 **Product Name**: HoneyDew
 **Tagline**: Fresh From Farm To Your Door
-**Website**: http://localhost:3016 (local) — [REPLACE WITH PRODUCTION URL]
+**Website**: https://jhendersonphd.github.io/honeydew2026/ (PRODUCTION)
 
 **Description** (200 words):
 
@@ -63,7 +63,7 @@ The tech stack: React + Vite frontend, FastAPI backend, SQLite database.
 
 Would love feedback from anyone who's tried similar services (Imperfect Foods, Moo Roo, Good Eggs, etc.) and what you'd want to see improved.
 
-Link: [REPLACE WITH PRODUCTION URL]
+Link: https://jhendersonphd.github.io/honeydew2026/
 
 AMA!
 
@@ -87,7 +87,7 @@ Currently have 9 farms on the platform with 31 products. Looking to grow the far
 
 If you know any local farms that might want to list, send them our way. And if you're a farm owner, happy to chat about what it takes to get listed.
 
-Link: [REPLACE WITH PRODUCTION URL]
+Link: https://jhendersonphd.github.io/honeydew2026/
 
 ---
 
@@ -111,7 +111,7 @@ Prices go directly to farmers, so you're supporting local agriculture while gett
 
 We're new and looking for feedback. What would make this more useful for your meal planning?
 
-Link: [REPLACE WITH PRODUCTION URL]
+Link: https://jhendersonphd.github.io/honeydew2026/
 
 ---
 
@@ -148,7 +148,7 @@ What you get:
 - Order tracking from harvest to door
 
 **Tweet 5 (CTA)**:
-Check it out: [REPLACE WITH PRODUCTION URL]
+Check it out: https://jhendersonphd.github.io/honeydew2026/
 
 We're just getting started — feedback welcome!
 
@@ -174,10 +174,10 @@ AI-powered platform connecting consumers directly with local farms. No middlemen
 - Full Shopify API sync ready
 
 :rocket: Try it out:
-http://localhost:3016
+https://jhendersonphd.github.io/honeydew2026/
 
 :warning: Note:
-This is a local deployment. Production URL coming soon.
+Production deployment complete - visit the URL above!
 
 Thanks to the team for getting this through S1-S9!
 ```
@@ -209,7 +209,7 @@ This represents hundreds of hours of work from the VexPivot team using our new V
 
 Would love to connect with others in the food/ag tech space, local farm networks, or anyone passionate about sustainable food systems.
 
-Link: [REPLACE WITH PRODUCTION URL]
+Link: https://jhendersonphd.github.io/honeydew2026/
 
 ---
 
