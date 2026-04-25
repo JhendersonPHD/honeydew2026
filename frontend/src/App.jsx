@@ -32,7 +32,7 @@ const ScrollToTop = () => {
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/honeydew2026">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<LazyPage Component={Home} />} />
