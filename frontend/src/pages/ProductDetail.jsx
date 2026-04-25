@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Recommendations from '../components/Recommendations';
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -489,36 +490,10 @@ const ProductDetail = () => {
           )}
         </div>
 
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div className="border-t border-gray-200 pt-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">You Might Also Like</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {relatedProducts.map(p => (
-                <Link
-                  key={p.id}
-                  to={`/products/${p.slug}`}
-                  className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all"
-                >
-                  <div className="aspect-square overflow-hidden bg-gray-100">
-                    <img
-                      src={p.images?.[0] || 'https://via.placeholder.com/400'}
-                      alt={p.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs text-emerald-600 font-medium mb-1">{p.farm?.name}</p>
-                    <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-amber-600 transition-colors">
-                      {p.name}
-                    </h3>
-                    <p className="text-lg font-bold text-amber-600">${p.price.toFixed(2)}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* AI Similar Products */}
+        <div className="border-t border-gray-200 pt-8 mt-8">
+          <Recommendations title="Similar Products" />
+        </div>
       </div>
     </PageTransition>
   );

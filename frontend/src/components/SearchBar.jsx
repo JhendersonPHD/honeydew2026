@@ -109,31 +109,54 @@ const SearchBar = ({ onSearch, suggestions = [], onSuggestionSelect, loading = f
       {/* Suggestions Dropdown */}
       {showSuggestions && suggestions.length > 0 && (
         <ul className="absolute z-50 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-80 overflow-auto">
-          {suggestions.map((suggestion, index) => (
-            <li
-              key={suggestion.id}
-              onClick={() => handleSuggestionClick(suggestion)}
-              className={`px-4 py-3 cursor-pointer hover:bg-amber-50 flex items-center justify-between ${
-                index === selectedIndex ? 'bg-amber-50' : ''
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{suggestion.image ? '🛒' : '📦'}</span>
-                <div>
-                  <p className="font-medium text-gray-900">{suggestion.name}</p>
-                  <p className="text-sm text-gray-500">{suggestion.category?.name || suggestion.farm?.name || 'Product'}</p>
+          {suggestions.map((suggestion, index) => {
+            const isSmartMatch = suggestion._score && suggestion._score < 0.2;
+            const isCategorySuggestion = suggestion.type === 'category';
+            const displayItem = suggestion.item || suggestion;
+
+            return (
+              <li
+                key={displayItem.id || `sugg-${index}`}
+                onClick={() => handleSuggestionClick(displayItem)}
+                className={`px-4 py-3 cursor-pointer hover:bg-indigo-50 flex items-center justify-between transition-colors ${
+                  index === selectedIndex ? 'bg-indigo-50' : ''
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{isCategorySuggestion ? '🏷️' : (displayItem.image ? '🛒' : '📦')}</span>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium text-gray-900">{displayItem.name}</p>
+                      {isSmartMatch && (
+                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-[#6366F1]/10 text-[#6366F1]">
+                          ✨ Smart Match
+                        </span>
+                      )}
+                    </div>
+                    {displayItem.category?.name && (
+                      <span className="inline-flex items-center px-2 py-0.5 mt-1 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                        {displayItem.category.name}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <span className="text-amber-600 font-semibold">${suggestion.price?.toFixed(2)}</span>
-            </li>
-          ))}
+                {displayItem.price && (
+                  <span className="text-[#F59E0B] font-semibold">${displayItem.price?.toFixed(2)}</span>
+                )}
+              </li>
+            );
+          })}
         </ul>
       )}
 
       {/* Empty state for no results */}
       {showSuggestions && query.trim() && suggestions.length === 0 && !loading && (
-        <div className="absolute z-50 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-4 text-center text-gray-500">
-          No products found for "{query}"
+        <div className="absolute z-50 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-lg p-6 text-center">
+          <p className="text-gray-500 mb-2">No products found for "{query}"</p>
+          <div className="text-sm text-[#6366F1] flex items-center justify-center gap-1">
+            <span>✨</span>
+            <span>Try searching for a category like "fruits" or "dairy"</span>
+          </div>
         </div>
       )}
     </div>
