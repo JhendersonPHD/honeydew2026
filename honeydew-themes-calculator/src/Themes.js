@@ -24,6 +24,7 @@ function Themes() {
   return (
     <div style={{ padding: '20px' }}>
       <h2>Themes</h2>
+      {/* S4.3 AI-Powered Theme Suggestions feature */}
       <div data-testid="ai-background" style={{
         marginTop: '20px',
         padding: '20px',
