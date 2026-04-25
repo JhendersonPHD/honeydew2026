@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import ProductCard from '../components/ProductCard';
@@ -10,7 +10,6 @@ import Breadcrumbs from '../components/Breadcrumbs';
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -30,10 +29,6 @@ const Shop = () => {
       setSelectedCategory('all');
     }
   }, [searchParams]);
-
-  useEffect(() => {
-    filterProducts();
-  }, [filterProducts]);
 
   const updateCategoryParam = (categorySlug) => {
     if (categorySlug === 'all') {
@@ -62,7 +57,6 @@ const Shop = () => {
 
       setProducts(productsData);
       setCategories(categoriesData);
-      setFilteredProducts(productsData);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -70,7 +64,8 @@ const Shop = () => {
     }
   };
 
-  const filterProducts = useCallback(() => {
+  // Use useMemo for derived state instead of useCallback + useEffect
+  const filteredProducts = useMemo(() => {
     let filtered = [...products];
 
     // Filter by category
@@ -88,7 +83,7 @@ const Shop = () => {
       );
     }
 
-    setFilteredProducts(filtered);
+    return filtered;
   }, [products, selectedCategory, searchQuery]);
 
   const handleSearch = (query) => {

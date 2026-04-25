@@ -20,13 +20,13 @@
 | Service | Port | Status |
 |---------|------|--------|
 | Frontend (Vite/React) | 3016 | HTTP 200 ✅ |
-| Backend (Node/Express) | 8018 | HTTP 200 ✅ |
+| Backend (Python/FastAPI) | 8017 | HTTP 200 ✅ |
 
-### API Endpoints Verified (07:20 PM PDT)
-- /api/health — HTTP 200
-- /api/products — 31 products returned
-- /api/farms — Data available
-- /api/categories — Data available
+### API Endpoints Verified (09:15 PM PDT)
+- /api/health — HTTP 200 ✅ {"status":"ok"}
+- /api/products — 31 products returned ✅
+- /api/farms — Data available ✅
+- /api/categories — Data available ✅
 
 ---
 
