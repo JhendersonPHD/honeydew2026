@@ -36,6 +36,7 @@ jobs:
         working-directory: frontend
         env:
           CI: true
+          VITE_API_URL: https://honeydew-api.onrender.com/api
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
