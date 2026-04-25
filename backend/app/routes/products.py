@@ -4,16 +4,7 @@ router = APIRouter()
 
 @router.get("/")
 def get_products():
-    return [
-        {
-            "id": 1,
-            "name": "Mock Product",
-            "price": 9.99,
-            "farm": {"name": "Mock Farm"},
-            "category": {"name": "Mock Category"},
-            "category_id": 1
-        }
-    ]
+    return {"items": []}
 
 @router.get("/{id}")
 def get_product(id: int):

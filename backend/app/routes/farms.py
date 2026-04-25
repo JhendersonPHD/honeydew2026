@@ -4,7 +4,7 @@ router = APIRouter()
 
 @router.get("/")
 def get_farms():
-    return [{"id": 1, "name": "Mock Farm"}]
+    return {"items": []}
 
 @router.get("/{id}")
 def get_farm(id: int):

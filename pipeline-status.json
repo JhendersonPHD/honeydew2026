@@ -86,8 +86,8 @@
   },
   "backend": {
     "status": "running",
-    "port": 8017,
-    "pid": 999352,
+    "port": 8018,
+    "pid": null,
     "database": "in-memory (mock data)"
   },
   "frontend": {

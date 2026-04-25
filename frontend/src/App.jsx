@@ -1,5 +1,5 @@
 import React, { lazy, useEffect } from 'react';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,7 +32,7 @@ const ScrollToTop = () => {
 
 const App = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<LazyPage Component={Home} />} />
@@ -57,7 +57,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
