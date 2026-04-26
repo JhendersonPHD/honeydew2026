@@ -73,23 +73,24 @@ function Themes() {
           onClick={getSuggestion}
           disabled={loading}
           style={{
-            backgroundColor: '#6366F1',
+            backgroundColor: loading ? '#818CF8' : '#6366F1',
             color: 'white',
             border: 'none',
-            padding: '12px 24px',
-            borderRadius: '8px',
+            padding: '14px 28px',
+            borderRadius: '12px',
             cursor: loading ? 'wait' : 'pointer',
             fontSize: '16px',
             fontWeight: 'bold',
             marginTop: '15px',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            transition: 'background-color 0.2s, transform 0.1s'
+            boxShadow: loading ? 'none' : '0 6px 12px rgba(99, 102, 241, 0.2)',
+            transition: 'all 0.2s ease-in-out',
+            transform: loading ? 'scale(0.98)' : 'scale(1)'
           }}
-          onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
-          onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          onMouseDown={(e) => !loading && (e.currentTarget.style.transform = 'scale(0.95)')}
+          onMouseUp={(e) => !loading && (e.currentTarget.style.transform = 'scale(1)')}
+          onMouseLeave={(e) => !loading && (e.currentTarget.style.transform = 'scale(1)')}
         >
-          {loading ? 'Generating AI Theme...' : 'Suggest AI Theme'}
+          {loading ? '✨ Dreaming up new colors...' : 'Suggest AI Theme'}
         </button>
 
         {suggestion && suggestion.name && (

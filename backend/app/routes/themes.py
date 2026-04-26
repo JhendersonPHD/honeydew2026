@@ -16,12 +16,18 @@ async def suggest_theme():
     }
     payload = {
         "model": "gpt-3.5-turbo",
-        "messages": [{
-            "role": "user",
-            "content": 'Suggest a highly engaging, innovative, and creative farm-to-consumer theme emphasizing organic farming, peak freshness, sustainability, and vibrant local produce. Ensure all text colors have high contrast against the background color. Return the response strictly as a JSON object with the following keys: "name" (a memorable and catchy theme name), "description" (a brief description), and "colors" (an object containing "primary", "secondary", "background", and "text" keys mapped to specific hex codes).'
-        }],
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a creative UI designer specializing in farm-to-consumer aesthetics."
+            },
+            {
+                "role": "user",
+                "content": 'Suggest a highly engaging, innovative, and creative farm-to-consumer theme emphasizing organic farming, peak freshness, sustainability, and vibrant local produce. Ensure all text colors have high contrast against the background color. Return the response strictly as a JSON object with the following keys: "name" (a memorable and catchy theme name), "description" (a brief description), and "colors" (an object containing "primary", "secondary", "background", and "text" keys mapped to specific hex codes).'
+            }
+        ],
         "max_tokens": 300,
-        "temperature": 0.8,
+        "temperature": 0.7,
         "response_format": { "type": "json_object" }
     }
 
