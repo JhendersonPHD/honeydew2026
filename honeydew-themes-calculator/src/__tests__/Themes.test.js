@@ -11,12 +11,12 @@ describe('Themes Component', () => {
 
   test('generates a suggestion when button is clicked', async () => {
     render(<Themes />);
-    const button = screen.getByRole('button', { name: /Suggest a Theme/i });
+    const button = screen.getByRole('button', { name: /Suggest AI Theme/i });
 
     fireEvent.click(button);
 
     // Check for loading state
-    expect(screen.getByRole('button', { name: /Generating Idea/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Generating AI Theme/i })).toBeInTheDocument();
 
     // Wait for suggestion to appear
     await waitFor(() => {
@@ -29,7 +29,7 @@ describe('Themes Component', () => {
     render(<Themes />);
     const backgroundContainer = screen.getByTestId('ai-background');
     const heading = screen.getByTestId('ai-accent-color');
-    const button = screen.getByRole('button', { name: /Suggest a Theme/i });
+    const button = screen.getByRole('button', { name: /Suggest AI Theme/i });
 
     expect(backgroundContainer).toHaveStyle('background-color: #FFFBEB');
     expect(heading).toHaveStyle('color: #6366F1');
