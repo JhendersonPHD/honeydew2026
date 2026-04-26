@@ -18,10 +18,10 @@ function Themes() {
           model: 'gpt-3.5-turbo',
           messages: [{
             role: 'user',
-            content: 'Suggest a creative, farm-to-consumer theme with a short description and color palette, emphasizing freshness and local produce.'
+            content: 'Suggest an innovative and creative farm-to-consumer theme with a catchy name, a brief description, and a cohesive color palette, emphasizing freshness, sustainability, and local produce.'
           }],
           max_tokens: 50,
-          temperature: 0.7
+          temperature: 0.8
         })
       });
 
