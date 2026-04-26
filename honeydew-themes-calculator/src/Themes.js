@@ -18,10 +18,10 @@ function Themes() {
           model: 'gpt-3.5-turbo',
           messages: [{
             role: 'user',
-            content: 'Suggest a creative, farm-to-consumer theme with a short description and color palette, emphasizing freshness.'
+            content: 'Suggest a creative, farm-to-consumer theme with a short description and color palette, emphasizing freshness and local produce.'
           }],
           max_tokens: 50,
-          temperature: 0.8
+          temperature: 0.7
         })
       });
 
@@ -39,7 +39,8 @@ function Themes() {
         "Sunrise Orchard: Warm oranges and bright yellows to start your day fresh.",
         "Verdant Fields: Lush greens and earthy browns for a natural, grounding feel.",
         "Ocean Breeze: Cool blues and sandy beiges for coastal farms.",
-        "Berry Burst: Vibrant reds and purples for a fruity, energetic vibe."
+        "Berry Burst: Vibrant reds and purples for a fruity, energetic vibe.",
+        "Golden Wheat: Rich ambers and creamy whites for a warm, rustic atmosphere."
       ];
       const randomTheme = fallbacks[Math.floor(Math.random() * fallbacks.length)];
       setSuggestion(randomTheme + " (Fallback)");
