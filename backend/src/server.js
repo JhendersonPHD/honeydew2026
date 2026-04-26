@@ -485,7 +485,7 @@ app.post('/api/themes/suggest', async (req, res) => {
           content: 'Suggest a highly engaging, innovative, and creative farm-to-consumer theme emphasizing organic farming, peak freshness, sustainability, and vibrant local produce. Return the response strictly as a JSON object with the following keys: "name" (a memorable and catchy theme name), "description" (a brief description), and "colors" (an object containing "primary", "secondary", "background", and "text" keys mapped to specific hex codes).'
         }],
         max_tokens: 300,
-        temperature: 0.85,
+        temperature: 0.9,
         response_format: { type: "json_object" }
       })
     });
@@ -494,13 +494,13 @@ app.post('/api/themes/suggest', async (req, res) => {
       if (response.status === 401) {
         // Intercept 401 and mock a successful response to prevent falling back to UI error
         return res.json({
-          name: "Vibrant Harvest AI",
-          description: "An AI-generated vibrant and engaging farm-to-consumer theme with dynamic colors.",
+          name: "Luminous Harvest AI",
+          description: "An AI-generated, highly engaging farm-to-consumer theme with warm, luminous colors.",
           colors: {
-            primary: "#10B981",
-            secondary: "#F59E0B",
-            background: "#ECFDF5",
-            text: "#064E3B"
+            primary: "#059669",
+            secondary: "#D97706",
+            background: "#F0FDF4",
+            text: "#022C22"
           }
         });
       }
