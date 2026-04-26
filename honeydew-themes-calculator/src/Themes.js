@@ -7,23 +7,12 @@ function Themes() {
   const getSuggestion = async () => {
     setLoading(true);
     try {
-      // S4.3 AI-Powered Theme Suggestions - API integration
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      // S4.3 AI-Powered Theme Suggestions - API integration through backend
+      const response = await fetch('/api/themes/suggest', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY || 'mock_key'}`
-        },
-        body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
-          messages: [{
-            role: 'user',
-            content: 'Suggest an innovative and creative farm-to-consumer theme emphasizing freshness, sustainability, and local produce. Return the response strictly as a JSON object with the following keys: "name" (a catchy theme name), "description" (a brief description), and "colors" (an object containing "primary", "secondary", "background", and "text" keys mapped to specific hex codes).'
-          }],
-          max_tokens: 300,
-          temperature: 0.8,
-          response_format: { type: "json_object" }
-        })
+          'Content-Type': 'application/json'
+        }
       });
 
       if (!response.ok) {
@@ -31,8 +20,7 @@ function Themes() {
       }
 
       const data = await response.json();
-      const content = JSON.parse(data.choices[0].message.content.trim());
-      setSuggestion(content);
+      setSuggestion(data);
     } catch (error) {
       console.error('AI Suggestion Error:', error);
       // Fallback to local heuristic if API fails or is unconfigured
@@ -70,10 +58,11 @@ function Themes() {
       {/* S4.3 AI-Powered Theme Suggestions feature - fully implemented */}
       <div data-testid="ai-background" style={{
         marginTop: '20px',
-        padding: '20px',
-        border: '1px solid #ddd',
-        borderRadius: '8px',
-        backgroundColor: '#FFFBEB'
+        padding: '24px',
+        border: '2px solid #F59E0B',
+        borderRadius: '12px',
+        backgroundColor: '#FFFBEB',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
       }}>
         <h3 data-testid="ai-accent-color" style={{ color: '#6366F1', display: 'flex', alignItems: 'center', gap: '8px' }}>
           ✨ AI-Powered Theme Suggestions
