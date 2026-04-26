@@ -16,7 +16,7 @@ describe('Themes Component', () => {
     fireEvent.click(button);
 
     // Check for loading state
-    expect(screen.getByRole('button', { name: /Generating AI Theme/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Dreaming up new colors/i })).toBeInTheDocument();
 
     // Wait for suggestion to appear
     await waitFor(() => {
