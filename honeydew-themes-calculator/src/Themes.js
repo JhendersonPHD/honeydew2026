@@ -77,14 +77,17 @@ function Themes() {
             color: 'white',
             border: 'none',
             padding: '12px 24px',
-            borderRadius: '6px',
+            borderRadius: '8px',
             cursor: loading ? 'wait' : 'pointer',
             fontSize: '16px',
             fontWeight: 'bold',
             marginTop: '15px',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            transition: 'background-color 0.2s'
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            transition: 'background-color 0.2s, transform 0.1s'
           }}
+          onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+          onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         >
           {loading ? 'Generating AI Theme...' : 'Suggest AI Theme'}
         </button>
