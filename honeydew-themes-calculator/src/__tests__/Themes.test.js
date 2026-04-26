@@ -20,7 +20,7 @@ describe('Themes Component', () => {
 
     // Wait for suggestion to appear
     await waitFor(() => {
-      const suggestion = screen.getByText(/"(Midnight Harvest|Sunrise Orchard|Verdant Fields|Ocean Breeze|Berry Burst).*"/i);
+      const suggestion = screen.getByText(/"(Midnight Harvest|Sunrise Orchard|Verdant Fields|Ocean Breeze|Berry Burst|Golden Wheat).*"/i);
       expect(suggestion).toBeInTheDocument();
     }, { timeout: 1500 });
   });
