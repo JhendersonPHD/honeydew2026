@@ -5,7 +5,7 @@ import os
 from app.database import engine, Base
 from app.routes import (
     auth, products, farms, categories, cart, orders, reviews,
-    referrals, rewards, feedback, notifications
+    referrals, rewards, feedback, notifications, themes
 )
 
 Base.metadata.create_all(bind=engine)
@@ -33,6 +33,7 @@ app.include_router(referrals.router, prefix="/api/referrals", tags=["referrals"]
 app.include_router(rewards.router, prefix="/api/rewards", tags=["rewards"])
 app.include_router(feedback.router, prefix="/api/feedback", tags=["feedback"])
 app.include_router(notifications.router, prefix="/api/notifications", tags=["notifications"])
+app.include_router(themes.router, prefix="/api/themes", tags=["themes"])
 
 @app.get("/api/health")
 def health_check():

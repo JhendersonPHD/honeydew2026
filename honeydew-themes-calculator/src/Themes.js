@@ -86,7 +86,7 @@ function Themes() {
             transition: 'background-color 0.2s'
           }}
         >
-          {loading ? 'Generating Idea...' : 'Suggest a Theme'}
+          {loading ? 'Generating AI Theme...' : 'Suggest AI Theme'}
         </button>
 
         {suggestion && suggestion.name && (
